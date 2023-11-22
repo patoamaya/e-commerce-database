@@ -21,7 +21,7 @@ const Navbar = () => {
           />
         </Link>
         <div className="links">
-        <ul className={menu ? "open" : ""}>
+        <ul className={menu && "open"}>
           <NavLink
             to="/"
             className={({ isActive }) => (isActive ? "active-link" : "link")}
