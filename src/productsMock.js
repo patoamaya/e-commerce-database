@@ -7,6 +7,7 @@ export const products = [
     año: "2013",
     color: "azul",
     KMS: "80.000",
+    descripcion:"Muy bueno. Papeles al día, digno de ver blablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla ",
     precio: 2600000,
     categoria: "auto",
     ubicacion: "Santa Rosa | La Pampa",
@@ -14,6 +15,7 @@ export const products = [
   },
   {
     marca: "FORD",
+    descripcion:"Muy bueno. Papeles al día, digno de ver blablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla ",
     id: 2,
     stock: 3,
     modelo: "ECOSPORT",
@@ -27,6 +29,7 @@ export const products = [
   },
   {
     marca: "FORD",
+    descripcion:"Muy bueno. Papeles al día, digno de ver blablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla ",
     id: 3,
     stock: 3,
     categoria: "auto",
@@ -40,6 +43,7 @@ export const products = [
   },
   {
     marca: "PEUGEOT",
+    descripcion:"Muy bueno. Papeles al día, digno de ver blablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla ",
     id: 4,
     categoria: "auto",
     stock: 6,
@@ -54,6 +58,7 @@ export const products = [
   {
     marca: "PEUGEOT",
     id: 5,
+    descripcion:"Muy bueno. Papeles al día, digno de ver blablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla ",
     stock: 2,
     categoria: "auto",
     modelo: "206",
@@ -66,6 +71,7 @@ export const products = [
   },
   {
     marca: "FIAT",
+    descripcion:"Muy bueno. Papeles al día, digno de ver blablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla ",
     stock: 1,
     categoria: "auto",
     id: 6,
@@ -79,6 +85,7 @@ export const products = [
   },
   {
     marca: "CHEVROLET",
+    descripcion:"Muy bueno. Papeles al día, digno de ver blablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla ",
     id: 7,
     stock: 2,
     categoria: "auto",
@@ -92,6 +99,7 @@ export const products = [
   },
   {
     marca: "RENAULT",
+    descripcion:"Muy bueno. Papeles al día, digno de ver blablablablablablablablablablablablablablablablablablablablablablablablablablablablablabla ",
     id: 8,
     stock: 2,
     modelo: "DUSTER",

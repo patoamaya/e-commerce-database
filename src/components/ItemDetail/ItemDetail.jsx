@@ -21,6 +21,9 @@ const ItemDetail = ({ product, onAdd, cantidadTotal }) => {
           <img src={product.img} alt="{product.modelo}" className="img" />
         </Box>
       </Grid>
+      <Grid item xs={12} md={9}>
+        <h4>{product.descripcion}</h4>
+      </Grid>
       <Grid item xs={12} md={3}>
         <Box className="box-desc">
           <h1>
