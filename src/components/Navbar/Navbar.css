@@ -75,11 +75,11 @@ span {
 
 @media screen and (max-width: 600px ){
 
+
   .container-navbar{
     position: sticky;
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column;    
     height: fit-content;
     width: 100vw; 
   }
@@ -120,6 +120,7 @@ span {
    }
    nav ul.open{
     display: flex;
+    transition: .3s;
    }
    nav ul li{
     width: 100%;

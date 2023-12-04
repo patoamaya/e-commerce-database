@@ -11,7 +11,7 @@ const ItemDetail = ({ product, onAdd, cantidadTotal }) => {
   };
   return (
     <Grid container spacing={1}>
-      <Grid item xs={12} md={9}>
+      <Grid item xs={12} md={8}>
         <Box className="volver">
           <Button variant="contained" color="secondary" onClick={goBack}>
             volver
@@ -21,10 +21,7 @@ const ItemDetail = ({ product, onAdd, cantidadTotal }) => {
           <img src={product.img} alt="{product.modelo}" className="img" />
         </Box>
       </Grid>
-      <Grid item xs={12} md={9}>
-        <h4>{product.descripcion}</h4>
-      </Grid>
-      <Grid item xs={12} md={3}>
+      <Grid item xs={12} md={4}>
         <Box className="box-desc">
           <h1>
             {product.marca} {product.modelo}
@@ -35,6 +32,9 @@ const ItemDetail = ({ product, onAdd, cantidadTotal }) => {
           <h2>{product.ubicacion} </h2>
           <CounterContainer stock={product.stock} onAdd={onAdd} initial={cantidadTotal} marca ={product.marca} modelo={product.modelo}  />
         </Box>
+      </Grid>
+      <Grid item xs={12} md={8} className="box-desc1">
+        <h4>{product.descripcion}</h4>
       </Grid>
     </Grid>
 

@@ -1,11 +1,13 @@
 .img {
   width: 500px;
   padding: 5px;
+
+
 }
 
 .box-img {
   align-content: center;
-  object-fit: content;
+  /* object-fit: content; */
   background-color: transparent;
   border: 2px solid #c8b273;
   margin-top: 1px;
@@ -14,6 +16,7 @@
   border-radius: 12px;
   margin-left: 3px;
   height: fit-content;
+  
 }
 
 .box-desc {
@@ -26,6 +29,13 @@
   border-radius: 12px;
   margin-top: 0.2rem;
   margin-right: 5px;
+}
+.box-desc1{
+  border: 2px solid #c8b273;
+  height: fit-content;
+  border-radius: 12px;
+  position: initial;
+
 }
 
 .volver {
