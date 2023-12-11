@@ -24,7 +24,7 @@ const ItemListContainer = () => {
     let consulta
 
     if(categoryName){
-      const itemCollectionFiltered = query(itemCollection,where("categoria", "==", categoryName))
+      const itemCollectionFiltered = query(itemCollection, where("categoria", "==", categoryName))
       consulta = itemCollectionFiltered
     }else{
       consulta = itemCollection

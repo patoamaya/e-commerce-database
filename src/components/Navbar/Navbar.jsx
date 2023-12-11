@@ -2,15 +2,37 @@ import "./Navbar.css";
 import CartWidget from "../CartWidget/CartWidget";
 import { Outlet, Link, useNavigate, NavLink } from "react-router-dom";
 import { Button } from "@mui/material";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { CartContext } from "../../context/CartContext";
 import MenuIcon from '@mui/icons-material/Menu';
+import { db } from "../../firebaseConfig";
+import { getDocs, collection } from "firebase/firestore";
+
 
 
 const Navbar = () => {
   const [menu, setMenu] = useState(false)
+  const [categories, setCategories] = useState([])
   const { cart } = useContext(CartContext);
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    const categories = collection(db, "categories")
+
+    getDocs(categories)
+    .then(res=>{
+        const categorias = res.docs.map(cat => {
+          return{
+            ...cat.data(),
+            id:res.id
+          }
+        })
+        setCategories(categorias)
+        console.log(categorias)
+      })
+      .catch(err => console.log(err))
+    },[])
+
   return (
     <div >
       <nav className="container-navbar">
@@ -22,31 +44,20 @@ const Navbar = () => {
         </Link>
         <div className="links">
         <ul className={menu && "open"}>
+         {
+          categories.map((cat)=>{
+            return(
           <NavLink
-            to="/"
+            key={cat.id}
+            to={cat.path}
             className={({ isActive }) => (isActive ? "active-link" : "link")}
           >
-            Todos
+            {cat.name}
           </NavLink>
-          <NavLink
-            to="/category/auto"
-            className={({ isActive }) => (isActive ? "active-link" : "link")}
-          >
-            Autos
-          </NavLink>
-          {/* <Button
-            variant="contained"
-            color="secondary"
-            onClick={() => navigate("/category/auto")}
-          >
-          Autos
-        </Button> */}
-          <NavLink
-            to="category/suv"
-            className={({ isActive }) => (isActive ? "active-link" : "link")}
-          >
-            Suvs
-          </NavLink>
+
+            )
+          })
+         }
         </ul>
         </div>
         <div className="menu" onClick={()=>{
@@ -67,3 +78,23 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
+        //   <NavLink
+        //     to="/category/auto"
+        //     className={({ isActive }) => (isActive ? "active-link" : "link")}
+        //   >
+        //     Autos
+        //   </NavLink>
+        //   {/* <Button
+        //     variant="contained"
+        //     color="secondary"
+        //     onClick={() => navigate("/category/auto")}
+        //   >
+        //   Autos
+        // </Button> */}
+        //   <NavLink
+        //     to="category/suv"
+        //     className={({ isActive }) => (isActive ? "active-link" : "link")}
+        //   >
+        //     Suvs
+        //   </NavLink>

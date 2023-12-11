@@ -1,9 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
-import { products } from "../../productsMock";
+// import { products }  from "../../productsMock";
 import useCounter from "../../utils/hooks/useCounter";
 import { useParams } from "react-router-dom";
 import { CartContext } from "../../context/CartContext";
+import {db} from "../../firebaseConfig"
+import {getDoc, doc, collection} from "firebase/firestore"
 import Swal from "sweetalert2";
 
 
@@ -26,9 +28,16 @@ const ItemDetailContainer = () => {
   
 
   useEffect(() => {
-    let encontrado = products.find((prod) => prod.id === +id);
+    const itemCollection = collection(db, "products")
+    const refDoc = doc(itemCollection, id)
 
-    setProduct(encontrado);
+    getDoc(refDoc)
+    .then(res => setProduct({
+      ...res.data(),
+      id:res.id
+    }))
+    .catch(err => console.log(err))
+    
   }, [id]);
 
   return (
