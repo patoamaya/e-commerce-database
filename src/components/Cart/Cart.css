@@ -53,5 +53,10 @@ h3{
   font-family:'Times New Roman', Times, serif;;
 }
 
+.btns{
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
 
 

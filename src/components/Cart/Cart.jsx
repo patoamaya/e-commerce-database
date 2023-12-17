@@ -1,9 +1,11 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import "./Cart.css";
+import { useNavigate } from "react-router-dom";
 
 const Cart = ({ cart, vaciarCarrito, borrarProducto, total }) => {
-  ;
+
+  const navigate = useNavigate()
   return (
     <div>
       {cart?.map((item) => (
@@ -23,9 +25,15 @@ const Cart = ({ cart, vaciarCarrito, borrarProducto, total }) => {
             </Button>
           </div>
       ))}
+      <div className="btns">
+
       <Button variant="contained" color="primary" onClick={vaciarCarrito}>
         Vaciar carrito
       </Button> 
+      <Button variant="contained" color="primary" onClick={()=>{navigate("/checkout")}}>
+        Finalizar compra
+      </Button> 
+      </div>
       <div>
         <h2>El precio total es: $ {total}</h2>
       </div> 

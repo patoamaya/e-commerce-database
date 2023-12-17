@@ -13,6 +13,7 @@ import CartContainer from "./components/Cart/CartContainer";
 import Form from "./components/Form/Form";
 import CartContextProvider from "./context/CartContext";
 import { useContext } from "react";
+import FormCheckoutContainer from "./components/FormCheckout/FormCheckoutContainer";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route element={<Navbar />}>
               <Route path="/" element={<ItemListContainer />} />
               <Route path="/form" element={<Form />} />
+              <Route path="/checkout" element={<FormCheckoutContainer/>} />
               <Route
                 path="/category/:categoryName"
                 element={<ItemListContainer />}
