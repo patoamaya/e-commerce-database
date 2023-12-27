@@ -34,9 +34,10 @@
   border: 2px solid #c8b273;
   height: fit-content;
   border-radius: 12px;
-  position: initial;
 
+  
 }
+
 
 .volver {
   display: flex;
