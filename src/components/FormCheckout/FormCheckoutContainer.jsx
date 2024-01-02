@@ -1,9 +1,44 @@
-import React from 'react'
+import { useContext, useState } from 'react'
 import FormCheckout from './FormCheckout'
 import {useFormik} from "formik"
 import * as Yup from "yup"
+import { CartContext } from '../../context/CartContext'
+import { db } from '../../firebaseConfig'
+import { addDoc, collection, doc, serverTimestamp, updateDoc } from 'firebase/firestore'
+
 
 const FormCheckoutContainer = () => {
+
+  const {cart, totalPrice, vaciarComprado} = useContext(CartContext)
+  
+  const [orderId, setOrderId] = useState(null)
+
+  const checkoutFn = (data)=>{
+    
+
+    let total = totalPrice()
+    
+  let dataOrder = {
+    buyer: data,
+    items: cart,
+    total: total,
+    date: serverTimestamp()
+  }
+
+    const ordersCollection = collection(db,"orders")
+
+    addDoc(ordersCollection, dataOrder)
+    .then(res=> setOrderId(res.id))
+    .catch(err => console.log(err))
+    
+    cart.map(product=>
+      updateDoc(doc(db, "products", product.id), {
+        stock: product.stock - product.quantity
+      })
+      )
+    vaciarComprado()
+   
+  }
 
 const {handleChange, handleSubmit, errors} = useFormik({
     initialValues:{
@@ -12,10 +47,7 @@ const {handleChange, handleSubmit, errors} = useFormik({
       contraseña:"",
       confirmContraseña:""
     },
-    onSubmit: (data)=>{
-      console.log(data)
-      
-    },
+    onSubmit: checkoutFn,
     validationSchema: Yup.object().shape({
       nombre: Yup.string().required("Este campo es obligatorio").min(3, "La cantidad de carácteres mínima es 3"),
       email: Yup.string().email("Debe proporcionar un Email válido").required("Este campo es obligatiorio"),
@@ -31,7 +63,13 @@ const {handleChange, handleSubmit, errors} = useFormik({
 console.log(errors)
 
   return (
-    <div><FormCheckout handleChange={handleChange} handleSubmit={handleSubmit} errors = {errors}/></div>
+    <div>
+      {
+        orderId ? (<h2>Su orden con el ID: "{orderId}" ha sido procesada exitosamente</h2>) : ( 
+      <FormCheckout handleChange={handleChange} handleSubmit={handleSubmit} errors = {errors}
+      />
+    )}
+    </div>
   )
 }
 

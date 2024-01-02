@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import { createContext } from "react";
 import Swal from "sweetalert2";
 
@@ -6,7 +6,14 @@ import Swal from "sweetalert2";
 export const CartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+
+  let cartLocal = JSON.parse(localStorage.getItem("cart"))
+  let existe = cartLocal || []
+  const [cart, setCart] = useState(existe);
+
+  useEffect(()=>{
+    localStorage.setItem("cart", JSON.stringify(cart))
+  },[cart])
 
   const agregarAlCarrito = (product) => {
     Swal.fire({
@@ -34,6 +41,9 @@ const CartContextProvider = ({ children }) => {
       setCart([...cart, product]);
     }
   };
+  const vaciarComprado = ()=>{
+    setCart([])
+  }
   const vaciarCarrito = () => {
     Swal.fire({
       title: "¿Desea vaciar el carrito?",
@@ -58,6 +68,7 @@ const CartContextProvider = ({ children }) => {
     
 
   };
+  
   const borrarProducto = (id) => {
     const filterBorrado = cart.filter((elemento) => elemento.id !== id);
     Swal.fire({
@@ -104,7 +115,8 @@ const CartContextProvider = ({ children }) => {
     vaciarCarrito,
     borrarProducto,
     totalPrice,
-    getQuantityById
+    getQuantityById,
+    vaciarComprado
   };
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
 };
